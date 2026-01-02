@@ -1,0 +1,259 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-noto-sans-kr), var(--font-space-grotesk);
+  --font-mono: var(--font-orbitron);
+  /* Using Orbitron as Mono/Tech font equivalent for now, or add font-display */
+  --font-display: var(--font-orbitron);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-glitch: glitch 1s infinite linear alternate-reverse;
+
+  @keyframes accordion-down {
+    from {
+      height: 0
+    }
+
+    to {
+      height: var(--radix-accordion-content-height)
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height)
+    }
+
+    to {
+      height: 0
+    }
+  }
+
+  @keyframes glitch {
+    0% {
+      clip-path: inset(20% 0 80% 0);
+      transform: translate(-2px, 1px);
+    }
+
+    20% {
+      clip-path: inset(60% 0 10% 0);
+      transform: translate(2px, -1px);
+    }
+
+    40% {
+      clip-path: inset(40% 0 50% 0);
+      transform: translate(-2px, 2px);
+    }
+
+    60% {
+      clip-path: inset(80% 0 5% 0);
+      transform: translate(2px, -2px);
+    }
+
+    80% {
+      clip-path: inset(10% 0 70% 0);
+      transform: translate(-1px, 1px);
+    }
+
+    100% {
+      clip-path: inset(30% 0 20% 0);
+      transform: translate(1px, -1px);
+    }
+  }
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: oklch(0.05 0 0);
+  --foreground: oklch(0.985 0.04 200);
+  --card: oklch(0.08 0 0);
+  --card-foreground: oklch(0.985 0.04 200);
+  --popover: oklch(0.08 0 0);
+  --popover-foreground: oklch(0.985 0.04 200);
+  --primary: oklch(0.85 0.18 190);
+  /* Neon Cyan */
+  --primary-foreground: oklch(0.1 0.05 190);
+  --secondary: oklch(0.25 0.1 300);
+  /* Deep Purple */
+  --secondary-foreground: oklch(0.98 0.02 300);
+  --muted: oklch(0.15 0 0);
+  --muted-foreground: oklch(0.65 0 0);
+  --accent: oklch(0.2 0.1 190);
+  --accent-foreground: oklch(0.95 0.05 190);
+  --destructive: oklch(0.6 0.25 25);
+  --border: oklch(0.2 0.05 190);
+  --input: oklch(0.2 0.05 190);
+  --ring: oklch(0.85 0.18 190);
+  --chart-1: oklch(0.85 0.18 190);
+  --chart-2: oklch(0.75 0.2 300);
+  --chart-3: oklch(0.6 0.25 25);
+  --chart-4: oklch(0.9 0.1 85);
+  --chart-5: oklch(0.95 0.05 200);
+  --sidebar: oklch(0.05 0 0);
+  --sidebar-foreground: oklch(0.985 0.04 200);
+  --sidebar-primary: oklch(0.85 0.18 190);
+  --sidebar-primary-foreground: oklch(0.1 0.05 190);
+  --sidebar-accent: oklch(0.1 0.05 190);
+  --sidebar-accent-foreground: oklch(0.985 0.04 200);
+  --sidebar-border: oklch(0.2 0.05 190);
+  --sidebar-ring: oklch(0.85 0.18 190);
+}
+
+.dark {
+  /* Inherit mostly, but ensure deep blacks and neon glows */
+  --background: oklch(0.02 0 0);
+  --foreground: oklch(0.985 0.02 200);
+  --card: oklch(0.07 0.01 200 / 0.8);
+  /* Glassy dark */
+  --card-foreground: oklch(0.985 0.02 200);
+  --popover: oklch(0.07 0.01 200);
+  --popover-foreground: oklch(0.985 0.02 200);
+  --primary: oklch(0.85 0.18 190);
+  --primary-foreground: oklch(0.1 0.05 190);
+  --secondary: oklch(0.3 0.15 300);
+  --secondary-foreground: oklch(0.98 0.02 300);
+  --muted: oklch(0.15 0.02 200);
+  --muted-foreground: oklch(0.7 0.02 200);
+  --accent: oklch(0.2 0.05 190);
+  --accent-foreground: oklch(0.98 0.02 190);
+  --destructive: oklch(0.6 0.2 25);
+  --border: oklch(0.2 0.05 190 / 0.5);
+  --input: oklch(0.2 0.05 190 / 0.5);
+  --ring: oklch(0.85 0.18 190);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary;
+    background-image:
+      radial-gradient(circle at 50% 0%, oklch(0.15 0.1 190 / 0.2), transparent 40%),
+      radial-gradient(circle at 100% 0%, oklch(0.15 0.1 300 / 0.2), transparent 40%);
+    background-attachment: fixed;
+  }
+}
+
+/* Glitch Effect */
+.glitch-text {
+  position: relative;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-text::before {
+  left: 2px;
+  text-shadow: -1px 0 #ff00c1;
+  clip-path: inset(44% 0 61% 0);
+  animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+  left: -2px;
+  text-shadow: -1px 0 #00fff9;
+  clip-path: inset(58% 0 43% 0);
+  animation: glitch-anim-2 2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+  0% {
+    clip-path: inset(20% 0 80% 0);
+  }
+
+  20% {
+    clip-path: inset(60% 0 10% 0);
+  }
+
+  40% {
+    clip-path: inset(40% 0 50% 0);
+  }
+
+  60% {
+    clip-path: inset(80% 0 5% 0);
+  }
+
+  80% {
+    clip-path: inset(10% 0 70% 0);
+  }
+
+  100% {
+    clip-path: inset(30% 0 20% 0);
+  }
+}
+
+@keyframes glitch-anim-2 {
+  0% {
+    clip-path: inset(25% 0 58% 0);
+  }
+
+  20% {
+    clip-path: inset(72% 0 23% 0);
+  }
+
+  40% {
+    clip-path: inset(14% 0 41% 0);
+  }
+
+  60% {
+    clip-path: inset(59% 0 3% 0);
+  }
+
+  80% {
+    clip-path: inset(31% 0 46% 0);
+  }
+
+  100% {
+    clip-path: inset(3% 0 28% 0);
+  }
+}
